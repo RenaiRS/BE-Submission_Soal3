@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Produk</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar', { user }) %>
+    <h1>Produk (Admin)</h1>
+    <p>Logged in as: <%= user.username %> (Role: <%= user.role %>)</p>
+
+    <form action="/products/admin" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Nama Produk" required>
+        <input type="number" name="price" placeholder="Harga" required>
+        <input type="text" name="description" placeholder="Deskripsi Produk">
+        <input type="file" name="image" accept="image/*"> <!-- Input untuk gambar -->
+        <button type="submit">Tambah Produk</button>
+    </form>    
+
+    <h2>Daftar Produk</h2>
+    <ul>
+        <% if (products.length > 0) { %>
+            <% products.forEach(product => { %>
+                <li>
+                    <strong><%= product.name %></strong> - Rp <%= product.price %>
+                    <p><%= product.description %></p><p><em>Penjual: <%= product.created_by_name %></em></p>
+                    <br>
+                    <% if (product.image) { %>
+                        <img src="<%= product.image %>" alt="<%= product.name %>" width="100"> <!-- Menampilkan gambar -->
+                    <% } %>
+                    <form action="/products/admin/update/<%= product.id %>" method="POST">
+                        <input type="text" name="name" value="<%= product.name %>" required>
+                        <input type="number" name="price" value="<%= product.price %>" required>
+                        <input type="text" name="description" value="<%= product.description %>">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/products/admin/delete/<%= product.id %>" method="POST">
+                        <button type="submit">Hapus</button>
+                    </form>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <li>Tidak ada produk tersedia</li>
+        <% } %>
+    </ul>
+    
+</body>
+</html>

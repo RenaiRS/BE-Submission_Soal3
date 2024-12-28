@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 32px;
+    color: #333;
+}
+
+.container1 {
+    padding: 20px;
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginbox,
+.registerbox {
+    margin: 0 auto;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px;
+}
+
+.loginbox h1,
+.registerbox h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.loginbox input,
+.registerbox input,
+.registerbox textarea,
+.registerbox select {
+    margin: 15px 0;
+    padding: 15px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.loginbox input:focus,
+.loginbox textarea:focus,
+.loginbox select:focus,
+.registerbox input:focus,
+.registerbox textarea:focus,
+.registerbox select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.loginbox button.submit,
+.registerbox button.submit {
+    margin-top: 20px;
+    padding: 15px;
+    width: 80%;
+    border: 1px solid #007bff;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loginbox button.submit:hover,
+.registerbox button.submit:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.loginbox button.submit:active,
+.registerbox button.submit:active {
+    background-color: #004085;
+    transform: translateY(0);
+}
+
+.container1 p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.container1 p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.container1 p a:hover {
+    text-decoration: underline;
+}
+
+.registerbox label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.registerbox textarea {
+    resize: vertical;
+    height: 100px;
+}

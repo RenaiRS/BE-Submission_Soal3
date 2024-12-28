@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <%- include('partials/navbar', { user }) %>
+    <h1>Keranjang Belanja</h1>
+    <ul>
+        <% if (cart.length > 0) { %>
+            <% cart.forEach(item => { %>
+                <li>
+                    <strong><%= item.name %></strong> - Rp <%= item.price %>
+                    <form action="/cart/remove/<%= item.cart_id %>" method="POST">
+                        <button type="submit">Hapus</button>
+                    </form>
+
+                    <form action="https://wa.me/+6282183835219" method="get" target="_blank">
+                        <input type="hidden" name="text" value="Halo saya mau beli produk berikut ini:%0A%0A<%= item.name %> - Rp <%= item.price %> - Jumlah: <%= item.quantity %>%0A%0ASaya ingin melanjutkan ke transaksi terimakasih.">
+                        <button type="submit" class="btn-beli">Beli Sekarang</button>
+                    </form>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <li>Keranjang Anda kosong</li>
+        <% } %>
+    </ul>
+</body>
+</html>

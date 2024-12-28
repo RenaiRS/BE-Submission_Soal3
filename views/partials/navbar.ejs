@@ -1,0 +1,37 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="/navbar.css">
+</head>
+
+<nav class="navbar">
+    <ul class="left-nav">
+        <li>
+            <% if (user.role === 'user') { %>
+                <a href="/products/user/user">Home</a>
+            <% } else if (user.role === 'admin') { %>
+                <a href="/products/admin/products">Home</a>
+            <% } %>
+        </li>
+
+        <% if (user.role === 'user') { %>
+            <li><a href="/cart">Cart</a></li>
+        <% } %>
+    </ul>
+
+    <ul class="right-nav">
+        <li class="profile">
+            <a href="/profile"><span class="profile-name"><%= user.username %></span></a>
+        </li>
+
+        <li class="logout">
+            <form action="/auth/logout" method="POST" style="display: inline;">
+                <button type="submit" class="logout-btn">
+                    <img src="Logout.jpg" alt="Logout Icon" class="logout-icon">
+                </button>
+            </form>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller - Manage Products</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../partials/navbar', { user }) %>
+    <h1>Welcome, <%= user.username %>!</h1>
+    <form action="/products/user" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Product Name" required>
+        <input type="number" name="price" placeholder="Product Price" required>
+        <input type="text" name="description" placeholder="Product Description">
+        <input type="file" name="image" accept="image/*"> <!-- Input for image -->
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2>All Products</h2>
+    <ul>
+        <% if (products.length > 0) { %>
+            <% products.forEach(product => { %>
+                <li>
+                    <strong><%= product.name %></strong> - Rp <%= product.price %>
+                    <p><%= product.description %></p>
+                    <p><em>Seller: <%= product.created_by_name %></em></p>
+                    <% if (product.image) { %>
+                        <img src="<%= product.image %>" alt="<%= product.name %>" width="100"> <!-- Display image -->
+                    <% } %>
+                    <br>
+                    <% if (product.created_by == user.id) { %>
+                        <!-- Update Form -->
+                        <form action="/products/user/update/<%= product.id %>" method="POST" enctype="multipart/form-data">
+                            <input type="text" name="name" value="<%= product.name %>" required>
+                            <input type="number" name="price" value="<%= product.price %>" required>
+                            <textarea name="description"><%= product.description %></textarea>
+                            <input type="file" name="image" accept="image/*"> <!-- Add input for image -->
+                            <button type="submit">Update</button>
+                        </form>
+    
+                        <!-- Delete Form -->
+                        <form action="/products/user/user/delete/<%= product.id %>" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    <% } %>
+    
+                    <!-- Add to Cart Button -->
+                    <form action="/cart/add/<%= product.id %>" method="POST" style="display: inline;">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <li>No products available</li>
+        <% } %>
+    </ul>    
+</body>
+</html>
