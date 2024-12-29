@@ -1,6 +1,11 @@
 # BE Program - Dokumentasi
 ## Gambaran Umum Proyek
 Proyek ini adalah sistem backend untuk sebuah toko online yang memiliki fitur seperti autentikasi pengguna, manajemen produk, sistem keranjang belanja, dan profil pengguna. Sistem ini dibangun menggunakan Node.js, Express.js, dan MySQL untuk manajemen basis data.
+
+Akun Admin : Admin1 Password : pwadmin1
+Akun User : seller password : seller
+
+terdapat kekurangan dari sistem ini yaitu rute setelah user ingin membeli produk, rute dialihkan hanya ke nomor admin. Sehingga, ketika user lain menambahkan produk mereka sendiri di web dan user lain ingin membeli produknya, jalur "beli sekarang" hanya direct ke nomor admin (disini adalah nomor saya sendiri/nomor teman) sehingga admin(dalam hal ini adalah si pemilik toko) harus melakukan verifikasi ulang ke user yang menjualkan produknya. saya juga tidak menambahkan data tambahan yaitu "nomor user" untuk keperluan transaksi.
 ## Struktur Folder
 BE_Submission_Soal3/
 ├── config/
